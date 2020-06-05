@@ -199,4 +199,4 @@ app.get("/whitelist/" + process.env.WHITELISTKEY + "/giveproduct/:robloxid/:prod
 })
 
 client.on('error', console.error)
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 8080)
