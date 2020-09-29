@@ -62,7 +62,7 @@ app.get("/" + process.env.ACCLINKENDPOINT + "/:robloxid", function (req, res) {
       "status": "error",
       "value": "no account linked"
     }
-    res.status(200).json(response)
+    res.status(404).json(response)
   } else {
     var response = {
       "status": "success",
@@ -107,7 +107,7 @@ app.get("/whitelisted/:productid/:robloxid", function (req, res) {
       "status": "error",
       "error": "no account linked"
     }
-    res.status(200).json(response)
+    res.status(404).json(response)
   } else {
     const product = file3.get("products." + req.params.productid.toString().toLowerCase())
     if (!product) {
@@ -115,7 +115,7 @@ app.get("/whitelisted/:productid/:robloxid", function (req, res) {
         "status": "error",
         "error": "product not found"
       }
-      res.status(200).json(response)
+      res.status(404).json(response)
     } else {
       if (product.users[person.roblox]) {
         var response = {
@@ -160,7 +160,7 @@ app.get("/whitelist/" + process.env.WHITELISTKEY + "/giveproduct/:robloxid/:prod
       "status": "error",
       "error": "no account linked"
     }
-    res.status(200).json(response)
+    res.status(404).json(response)
   } else {
     const product = file3.get("products." + req.params.product.toString().toLowerCase())
     if (!product) {
@@ -168,7 +168,7 @@ app.get("/whitelist/" + process.env.WHITELISTKEY + "/giveproduct/:robloxid/:prod
         "status": "error",
         "error": "product not found"
       }
-      res.status(200).json(response)
+      res.status(404).json(response)
     } else {
       client.guilds.resolve(process.env.PRIMARYGUILD).members.fetch(person.discord).then(userrr => {
         file3.set("products." + req.params.product.toString().toLowerCase() + ".users." + person.roblox + ".status", true)
